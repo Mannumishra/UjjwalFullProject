@@ -114,7 +114,7 @@ const AddShopBanner = () => {
                             disabled={isLoading}
                             className={`${isLoading ? 'not-allowed' : 'allowed'}`}
                         >
-                            {isLoading ? "Please Wait..." : "Add Shop Banner"}
+                            {isLoading ? "Please Wait..." : "Add New Lanch"}
                         </button>
                     </div>
                 </form>

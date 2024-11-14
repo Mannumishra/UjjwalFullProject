@@ -84,7 +84,7 @@ const AllVoucher = () => {
                                     <td>{voucher.productName}</td>
                                     <td>
                                         <img
-                                            src={voucher.image}
+                                            src={`http://localhost:8000/${voucher.image}`}
                                             alt={voucher.productName}
                                             style={{ width: '100px', height: 'auto' }}
                                         />

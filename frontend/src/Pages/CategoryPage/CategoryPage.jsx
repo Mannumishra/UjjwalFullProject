@@ -236,7 +236,7 @@ const CategoryPage = () => {
                     <img
                       style={{ borderRadius: "10px", cursor: 'pointer' }}
                       width={"100%"}
-                      src={product.image}
+                      src={`http://localhost:8000/${product.image}`}
                       alt="New Launch Product"
                       onClick={() => console.log("Modal Opened:", product)}
                     />

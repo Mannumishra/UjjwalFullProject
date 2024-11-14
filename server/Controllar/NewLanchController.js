@@ -1,30 +1,41 @@
-const { uploadImage, deleteImage, } = require("../Cloudnary/Cloudnary");
-const NewLanch = require("../Model/NewLanchModel");
 const fs = require("fs");
+const path = require("path");
+const NewLanch = require("../Model/NewLanchModel");
+
+// Utility function to delete an image from the local folder
+const deleteImageFile = (filePath) => {
+    const fullPath = path.join(__dirname, "..", filePath);
+    if (fs.existsSync(fullPath)) {
+        fs.unlinkSync(fullPath);
+    }
+};
 
 const createRecord = async (req, res) => {
     try {
         const { productName, active } = req.body;
+
         if (!productName) {
             return res.status(400).json({
                 success: false,
-                message: "New Lanch Product Name is required"
+                message: "New Launch Product Name is required",
             });
         }
         if (!req.file) {
             return res.status(400).json({
                 success: false,
-                message: "New Lanch Product Image is required"
+                message: "New Launch Product Image is required",
             });
         }
-        const imgUrl = await uploadImage(req.file.path, "Assorts");
+
+        // Save the image path in the database
+        const imgPath =  req.file.path
         const newProduct = new NewLanch({
             productName,
-            image: imgUrl,
-            active: active || false
+            image: imgPath,
+            active: active || false,
         });
         await newProduct.save();
-        fs.unlinkSync(req.file.path);
+
         res.status(200).json({ message: "Product created successfully", newProduct });
     } catch (error) {
         if (req.file) fs.unlinkSync(req.file.path);
@@ -58,20 +69,25 @@ const updateRecord = async (req, res) => {
         const { productName, active } = req.body;
         const productId = req.params.id;
         let updatedProduct = await NewLanch.findById(productId);
+
         if (!updatedProduct) {
             return res.status(404).json({ message: "Product not found" });
         }
-        let imgUrl = updatedProduct.image;
+
+        let imgPath = updatedProduct.image;
+
+        // If a new image is uploaded, delete the old one and save the new one
         if (req.file) {
-            await deleteImage(getPublicIdFromUrl(imgUrl));
-            imgUrl = await uploadImage(req.file.path, "Assorts");
-            fs.unlinkSync(req.file.path);
+            deleteImageFile(imgPath);
+            imgPath =  req.file.path
         }
+
         updatedProduct = await NewLanch.findByIdAndUpdate(
             productId,
-            { productName, image: imgUrl, active },
+            { productName, image: imgPath, active },
             { new: true, runValidators: true }
         );
+
         res.status(200).json({ message: "Product updated successfully", updatedProduct });
     } catch (error) {
         if (req.file) fs.unlinkSync(req.file.path);
@@ -85,19 +101,15 @@ const deleteRecord = async (req, res) => {
         if (!product) {
             return res.status(404).json({ message: "Product not found" });
         }
-        await deleteImage(getPublicIdFromUrl(product.image));
+
+        // Delete the image from the local folder
+        deleteImageFile(product.image);
+        
         await NewLanch.findByIdAndDelete(req.params.id);
         res.status(200).json({ message: "Product deleted successfully" });
     } catch (error) {
         res.status(500).json({ message: "Error deleting product", error });
     }
-};
-
-const getPublicIdFromUrl = (url) => {
-    const urlParts = url.split('/');
-    const publicIdWithExtension = urlParts[urlParts.length - 1];
-    const publicId = publicIdWithExtension.split('.')[0];
-    return publicId;
 };
 
 module.exports = {
