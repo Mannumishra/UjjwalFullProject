@@ -15,7 +15,7 @@ const Footer = () => {
       <div className="footer">
         <Container>
           <Grid container spacing={4}>
-            <Grid item xs={12} sm={2} lg={2} xl={3}>
+            <Grid item xs={12} sm={2} lg={4} xl={3}>
               <div className="tt-mobile-collapse">
                 <Typography variant="h6" className="tt-collapse-title">
                   Customer Service
@@ -39,7 +39,7 @@ const Footer = () => {
                 </div>
               </div>
             </Grid>
-            <Grid item xs={12} sm={2} lg={2} xl={3}>
+            <Grid item xs={12} sm={2} lg={4} xl={3}>
               <div className="tt-mobile-collapse">
                 <Typography variant="h6" className="tt-collapse-title">
                   Information
@@ -47,66 +47,19 @@ const Footer = () => {
                 <div className="tt-collapse-content">
                   <ul className="tt-list">
                     <li>
-                      <Link to="/pages/about-us">About Us</Link>
+                      <Link to="/">Home</Link>
                     </li>
                     <li>
-                      <Link to="/pages/contact">Contact</Link>
+                      <Link to="/about">About Us</Link>
+                    </li>
+                    <li>
+                      <Link to="/contact">Contact</Link>
                     </li>
                   </ul>
                 </div>
               </div>
             </Grid>
-            <Grid item xs={12} sm={3} lg={2} xl={3}>
-              <div className="tt-mobile-collapse">
-                <Typography variant="h6" className="tt-collapse-title">
-                  Categories
-                </Typography>
-                <div className="tt-collapse-content">
-                  <ul className="tt-list">
-                    <li>
-                      <Link to="/collections/hindu-dieties">Lathe Machine Accessories</Link>
-                    </li>
-                    <li>
-                      <Link to="/collections/home-decor">Milling Machine Accessories</Link>
-                    </li>
-                    <li>
-                      <Link to="/collections/home-kitchen">Vices & Work Holding</Link>
-                    </li>
-                    <li>
-                      <Link to="/collections/pooja-decor">Measuring Tool & Equipments</Link>
-                    </li>
 
-                  </ul>
-                </div>
-              </div>
-            </Grid>
-            <Grid item xs={12} sm={2} lg={2} xl={3}>
-              <div className="tt-mobile-collapse">
-                <Typography
-                  style={{ visibility: "hidden" }}
-                  variant="h6"
-                  className="tt-collapse-title"
-                >
-                  Categories
-                </Typography>
-                <div className="tt-collapse-content">
-                  <ul className="tt-list">
-                    <li>
-                      <Link to="/collections/pooja-decor">Jewellery & Watch Making</Link>
-                    </li>
-                    <li>
-                      <Link to="/collections/pooja-decor">DIY Tools</Link>
-                    </li>
-                    <li>
-                      <Link to="/collections/pooja-decor">Best Seller-Best Combos</Link>
-                    </li>
-                    <li>
-                      <Link to="/collections/pooja-decor">Indexable Tool</Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </Grid>
             <Grid item xs={12} sm={2} lg={4} xl={3}>
               <div className="tt-newsletter">
                 <div className="tt-mobile-collapse">
@@ -114,20 +67,20 @@ const Footer = () => {
                     Newsletter
                   </Typography>
                   <p>Subcribe to our Newsletter to get more info.</p>
-                  <div>
+                  {/* <div>
                     <Typography variant="h6">
-                      <Link style={{ display: "flex", alignItems: 'center', color: 'white' }} to={"/"}>
+                      <a   href="/catalogue.pdf" download className="fixed-pdf" target="_blank" >
                         Catalogs <ArrowRightIcon />
-                      </Link>
+                      </a>
                     </Typography>
-                  </div>
-                  <div>
+                  </div> */}
+                  {/* <div>
                     <Typography variant="h6">
                       <Link style={{ display: "flex", alignItems: 'center', color: 'white' }} to={"/"}>
                         Sitemap <ArrowRightIcon />
                       </Link>
                     </Typography>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </Grid>

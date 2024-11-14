@@ -5,7 +5,15 @@ import { Link } from "react-router-dom";
 import aboutus from "../../images/aboutus.jpeg";
 import "../AboutPage/AboutPage.css";
 import Metatag from "../../Component/MetaTags/Metatag";
+import { useEffect } from "react";
 const AboutPage = () => {
+  
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    })
+  }, [])
   return (
     <>
       <Metatag
