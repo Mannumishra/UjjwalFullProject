@@ -25,7 +25,7 @@ const Contact = () => {
     e.preventDefault()
     console.log(data)
     try {
-      let res = await axios.post("https://ujjwalbackend.onrender.com/api/contact", data)
+      let res = await axios.post("http://localhost:8000/api/contact", data)
       if (res.status === 200) {
         toast.success("Message sent successfully");
         setData({

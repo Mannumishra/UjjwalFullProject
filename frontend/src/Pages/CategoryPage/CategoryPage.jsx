@@ -18,7 +18,7 @@ const CategoryPage = () => {
 
   const getApiData = async () => {
     try {
-      let res = await axios.get("https://ujjwalbackend.onrender.com/api/subcategory");
+      let res = await axios.get("http://localhost:8000/api/subcategory");
       const newData = res.data.data;
 
       const groupedData = newData.reduce((acc, item) => {
@@ -43,7 +43,7 @@ const CategoryPage = () => {
 
   const getCategorydata = async () => {
     try {
-      let res = await axios.get("https://ujjwalbackend.onrender.com/api/category");
+      let res = await axios.get("http://localhost:8000/api/category");
       setData(res.data.data);
     } catch (error) {
       console.log(error);
@@ -77,7 +77,7 @@ const CategoryPage = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const getApiDataNewLanch = async () => {
     try {
-      const res = await axios.get("https://ujjwalbackend.onrender.com/api/new-lanch");
+      const res = await axios.get("http://localhost:8000/api/new-lanch");
       if (res.status === 200) {
         const data = res.data;
         const filterData = data.filter((x) => x.active === true);
@@ -182,7 +182,7 @@ const CategoryPage = () => {
                       <article className="card">
                         <Link to={`/our-category/products/${item._id}`}>
                           <div className="card__img">
-                            <img src={item.image} alt={item.categoryname} />
+                            <img src={`http://localhost:8000/${item.image}`} alt={item.categoryname} />
                           </div>
                           <div className="card__name">
                             <p style={{ margin: "0" }}>

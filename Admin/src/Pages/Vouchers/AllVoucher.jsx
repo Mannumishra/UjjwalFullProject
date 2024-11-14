@@ -11,7 +11,7 @@ const AllVoucher = () => {
     useEffect(() => {
         const fetchVouchers = async () => {
             try {
-                const response = await axios.get('https://ujjwalbackend.onrender.com/api/new-lanch');
+                const response = await axios.get('http://localhost:8000/api/new-lanch');
                 setVouchers(response.data);
                 setIsLoading(false);
             } catch (error) {
@@ -26,7 +26,7 @@ const AllVoucher = () => {
     const handleDelete = async (id) => {
         if (window.confirm("Are you sure you want to delete this voucher?")) {
             try {
-                await axios.delete(`https://ujjwalbackend.onrender.com/api/new-lanch/${id}`);
+                await axios.delete(`http://localhost:8000/api/new-lanch/${id}`);
                 setVouchers(vouchers.filter(voucher => voucher._id !== id));
                 toast.success("Voucher deleted successfully");
             } catch (error) {
@@ -37,7 +37,7 @@ const AllVoucher = () => {
 
     const handleCheckboxChange = async (id, currentStatus) => {
         try {
-            await axios.put(`https://ujjwalbackend.onrender.com/api/new-lanch/${id}`, {
+            await axios.put(`http://localhost:8000/api/new-lanch/${id}`, {
                 active: !currentStatus,
             });
             setVouchers(vouchers.map(voucher =>

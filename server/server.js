@@ -11,7 +11,8 @@ const newLanchRouter = require("./Route/NewLanchRouter")
 const app = express()
 app.use(cors())
 app.use(express.json())
-app.set(express.static("/Public"))
+app.set(express.static("./Public/Image"))
+app.use("/Public", express.static("Public"));
 
 app.use("/api", categoryRouter)
 app.use("/api", productRouter)

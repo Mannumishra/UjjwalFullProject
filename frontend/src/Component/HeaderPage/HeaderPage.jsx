@@ -34,7 +34,7 @@ const HeaderPage = () => {
   // Fetch and set categories
   const getApiData = async () => {
     try {
-      const res = await axios.get("https://ujjwalbackend.onrender.com/api/subcategory");
+      const res = await axios.get("http://localhost:8000/api/subcategory");
       const newData = res.data.data;
 
       // Group data by category
@@ -63,7 +63,7 @@ const HeaderPage = () => {
   // Fetch and set category data
   const getCategorydata = async () => {
     try {
-      const res = await axios.get("https://ujjwalbackend.onrender.com/api/category");
+      const res = await axios.get("http://localhost:8000/api/category");
       setData(res.data.data);
     } catch (error) {
       console.log(error);
@@ -73,7 +73,7 @@ const HeaderPage = () => {
   // Fetch and set subcategory data
   const getSubCategorydata = async () => {
     try {
-      const res = await axios.get("https://ujjwalbackend.onrender.com/api/subcategory");
+      const res = await axios.get("http://localhost:8000/api/subcategory");
       setSubCategory(res.data.data);
     } catch (error) {
       console.log(error);
@@ -83,7 +83,7 @@ const HeaderPage = () => {
   // Fetch and set product data
   const getAllProduct = async () => {
     try {
-      const res = await axios.get("https://ujjwalbackend.onrender.com/api/product");
+      const res = await axios.get("http://localhost:8000/api/product");
       console.log("Product ", res.data.data);
       setProducts(res.data.data);
     } catch (error) {

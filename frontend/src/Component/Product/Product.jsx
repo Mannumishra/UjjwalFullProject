@@ -11,7 +11,7 @@ const Product = () => {
   const getCategoryData = async () => {
     try {
       const res = await axios.get(
-        "https://ujjwalbackend.onrender.com/api/category"
+        "http://localhost:8000/api/category"
       );
       console.log(res);
       setData(res.data.data);
@@ -86,7 +86,7 @@ const Product = () => {
                       className="product"
                       width="100%"
                       style={{ height: "220px" }}
-                      src={item.image}
+                      src={`http://localhost:8000/${item.image}`}
                       alt={item.categoryname}
                     />
                     <Typography

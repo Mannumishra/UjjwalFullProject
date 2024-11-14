@@ -10,7 +10,7 @@ const AllShopBanner = () => {
 
     const getApiData = async () => {
         try {
-            const res = await axios.get("https://ujjwalbackend.onrender.com/api/contact")
+            const res = await axios.get("http://localhost:8000/api/contact")
             console.log(res)
             const newData = res.data.data
             setData(newData.reverse())

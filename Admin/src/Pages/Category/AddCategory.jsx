@@ -53,11 +53,11 @@ const AddCategory = () => {
                 <form onSubmit={postData}>
                     <div className="mb-2">
                         <label htmlFor="categoryname" className="form-label">Category Name <sup className='text-danger'>*</sup></label>
-                        <input type="text" name="categoryname" id="categoryname" className="form-control" onChange={getInputData} placeholder='Category Name' />
+                        <input type="text" name="categoryname" id="categoryname" className="form-control" onChange={getInputData} placeholder='Category Name' required/>
                     </div>
                     <div className="mb-2">
                         <label htmlFor="image" className="form-label">Category Image <sup className='text-danger'>*</sup></label>
-                        <input type="file" name="image" id="image" className="form-control" onChange={getFileData} />
+                        <input type="file" name="image" id="image" className="form-control" onChange={getFileData} required/>
                     </div>
                     <button type="submit" className="mybtnself" disabled={loading}>
                         {loading ? 'Loading...' : 'Add Category'}

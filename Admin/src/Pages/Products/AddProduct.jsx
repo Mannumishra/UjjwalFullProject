@@ -14,7 +14,7 @@ const AddProduct = () => {
 
     const getApiData = async () => {
         try {
-            let res = await axios.get("https://ujjwalbackend.onrender.com/api/category");
+            let res = await axios.get("http://localhost:8000/api/category");
             setCatedata(res.data.data);
         } catch (error) {
             console.log(error);
@@ -23,7 +23,7 @@ const AddProduct = () => {
 
     const getApiSubData = async (categoryName) => {
         try {
-            let res = await axios.get("https://ujjwalbackend.onrender.com/api/subcategory");
+            let res = await axios.get("http://localhost:8000/api/subcategory");
             // Filter subcategories based on selected category
             const filteredSubcategories = res.data.data.filter(item => item.categoryname === categoryName);
             setSubcatedata(filteredSubcategories);
@@ -73,7 +73,7 @@ const AddProduct = () => {
             formData.append("image4", data.image4);
             formData.append("tableData", data.tableData);
             setLoading(true);
-            const res = await axios.post("https://ujjwalbackend.onrender.com/api/product", formData);
+            const res = await axios.post("http://localhost:8000/api/product", formData);
             if (res.status === 200) {
                 toast.success("New Product created");
                 navigate("/all-products");
@@ -115,11 +115,11 @@ const AddProduct = () => {
                     <div className="row">
                         <div className="col-md-4">
                             <label htmlFor="">Product Name <sup className='text-danger'>*</sup></label>
-                            <input type="text" name="productname" onChange={getInputData} value={data.productname} className='form-control' placeholder='Product name' />
+                            <input type="text" name="productname" onChange={getInputData} value={data.productname} className='form-control' placeholder='Product name' required />
                         </div>
                         <div className="col-md-4 mb-3">
                             <label htmlFor="category">Select Category <sup className='text-danger'>*</sup></label>
-                            <select name="categoryname" onChange={getInputData} className="form-control">
+                            <select name="categoryname" onChange={getInputData} className="form-control" required>
                                 <option disabled selected>Choose Category</option>
                                 {catedata.map((item, index) =>
                                     <option key={index} value={item.categoryname}>{item.categoryname}</option>
@@ -128,7 +128,7 @@ const AddProduct = () => {
                         </div>
                         <div className="col-md-4 mb-3">
                             <label htmlFor="category">Select SubCategory <sup className='text-danger'>*</sup></label>
-                            <select name="subcategoryName" onChange={getInputData} className="form-control">
+                            <select name="subcategoryName" onChange={getInputData} className="form-control" required>
                                 <option disabled selected>Choose SubCategory</option>
                                 {subcatedata.map((item, index) =>
                                     <option key={index} value={item.subcategoryName}>{item.subcategoryName}</option>
@@ -137,26 +137,26 @@ const AddProduct = () => {
                         </div>
                         <div className="col-md-12 mb-3">
                             <label htmlFor="details">Product Details <sup className='text-danger'>*</sup></label>
-                            <textarea name="details" value={data.details} onChange={getInputData} className='form-control' placeholder='Product details'></textarea>
+                            <textarea name="details" value={data.details} required onChange={getInputData} className='form-control' placeholder='Product details'></textarea>
                         </div>
                     </div>
                     <div className="row">
                         {/* File input fields */}
                         <div className="col-md-3 mb-3">
                             <label htmlFor="pic1" className="form-label">Picture 1: <sup className='text-danger'>*</sup></label>
-                            <input type="file" name="image1" onChange={getInputfile} className="form-control" />
+                            <input type="file" name="image1" onChange={getInputfile} className="form-control" required />
                         </div>
                         <div className="col-md-3 mb-3">
                             <label htmlFor="pic2" className="form-label">Picture 2: <sup className='text-danger'>*</sup></label>
-                            <input type="file" name="image2" onChange={getInputfile} className="form-control" />
+                            <input type="file" name="image2" onChange={getInputfile} className="form-control" required />
                         </div>
                         <div className="col-md-3 mb-3">
                             <label htmlFor="pic3" className="form-label">Picture 3: <sup className='text-danger'>*</sup></label>
-                            <input type="file" name="image3" onChange={getInputfile} className="form-control" />
+                            <input type="file" name="image3" onChange={getInputfile} className="form-control" required />
                         </div>
                         <div className="col-md-3 mb-3">
                             <label htmlFor="pic4" className="form-label">Picture 4: <sup className='text-danger'>*</sup></label>
-                            <input type="file" name="image4" onChange={getInputfile} className="form-control" />
+                            <input type="file" name="image4" onChange={getInputfile} className="form-control" required />
                         </div>
                     </div>
                     <div className=''>
@@ -165,7 +165,7 @@ const AddProduct = () => {
                             ref={editor}
                             value={data.tableData}
                             onChange={handleEditorChange}
-                            placeholder="Enter product details here..."
+                            placeholder="Enter product details here..." required
                         />
                     </div>
                     <button type="submit" className="mybtnself" style={{ marginBottom: 100 }}>{loading ? "Please wait...." : "Add New Product"}</button>

@@ -16,7 +16,7 @@ const ProductDetailPage = () => {
 
   const getAllProductData = async () => {
     try {
-      let res = await axios.get(`https://ujjwalbackend.onrender.com/api/product/${_id}`);
+      let res = await axios.get(`http://localhost:8000/api/product/${_id}`);
       console.log(res.data.data);
       setData(res.data.data);
       setSelectedImage(res.data.data.image2);
@@ -82,13 +82,13 @@ const ProductDetailPage = () => {
                 sx={{ padding: { xs: "1rem", md: "2rem", sm: "1rem" } }}
                 style={{ border: "1px solid lightgray" }}
               >
-                <img src={selectedImage} width={"100%"} alt={data.categoryname} />
+                <img src={`http://localhost:8000/${selectedImage}`} width={"100%"} alt={data.categoryname} />
               </Typography>
               <Grid container spacing={2} mt={2}>
                 {images.map((image, index) => (
                   <Grid item xs={3} key={index}>
                     <img
-                      src={image}
+                      src={`http://localhost:8000/${image}`}
                       width={"100%"}
                       alt={`Thumbnail ${index + 1}`}
                       style={{ cursor: "pointer", border: selectedImage === image ? "2px solid blue" : "none" }}

@@ -5,17 +5,15 @@ import { toast } from 'react-toastify';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
-  // CreateVoucher
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (email !== 'ujjwal@gmail.com' && password !== 'Ujjwal@123') {
+    if (email !== 'ujjwal@gmail.com' || password !== 'Ujjwal@123') {
       toast.error('Invalid Email Address or password');
-    }
-    else {
-      sessionStorage.setItem("login", true)
-      window.location.href = "/dashboard";
+    } else {
+      sessionStorage.setItem('login', true);
+      window.location.href = '/dashboard';
     }
   };
 
@@ -32,16 +30,27 @@ const Login = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="form-control"
+                required
               />
             </div>
             <div className="form-group">
               <label>Password</label>
               <input
-                type="password"
+                type={showPassword ? 'text' : 'password'}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 className="form-control"
+                required
               />
+              <div className="show-password">
+                <input
+                  type="checkbox"
+                  checked={showPassword}
+                  onChange={() => setShowPassword(!showPassword)}
+                  id="show-password-checkbox"
+                />
+                <label htmlFor="show-password-checkbox">Show Password</label>
+              </div>
             </div>
             <button type="submit" className="login-button">Login</button>
           </form>
