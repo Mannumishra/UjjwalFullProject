@@ -68,6 +68,7 @@ ol, ul {
   padding: 0.5rem 0rem;
   flex-wrap: wrap;
   gap: 0.5rem;
+  z-index: 1000;
 }
 .bread h4{
   margin-bottom: 0rem;
