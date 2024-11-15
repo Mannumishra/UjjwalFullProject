@@ -9,7 +9,7 @@ function ProductPage() {
 
   const getBannerData = async () => {
     try {
-      let res = await axios.get("http://localhost:8000/api/banner");
+      let res = await axios.get("http://localhost:8001/api/banner");
       console.log(res);
       setData(res.data.data);
     } catch (error) {
@@ -36,7 +36,7 @@ function ProductPage() {
       <Slider style={{ width: "100%", overflow: "hidden" }} {...settingsCarousel}>
         {data.map((banner, index) => (
           <div key={index}>
-            <img width={"100%"} src={`http://localhost:8000/${banner.image}`} alt={`banner-${index}`} />
+            <img width={"100%"} src={`http://localhost:8001/${banner.image}`} alt={`banner-${index}`} />
           </div>
         ))}
       </Slider>

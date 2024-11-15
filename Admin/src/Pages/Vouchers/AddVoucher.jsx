@@ -41,7 +41,7 @@ const CreateVoucher = () => {
         data.append('image', file);
 
         try {
-            const response = await axios.post('http://localhost:8000/api/new-lanch', data, {
+            const response = await axios.post('http://localhost:8001/api/new-lanch', data, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }

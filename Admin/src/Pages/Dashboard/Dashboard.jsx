@@ -19,12 +19,12 @@ const Dashboard = () => {
 
   const fetchDashboardData = async () => {
     try {
-      const categoryRes = await axios.get('http://localhost:8000/api/category');
-      const subcategoryRes = await axios.get('http://localhost:8000/api/subcategory');
-      const productRes = await axios.get('http://localhost:8000/api/product');
-      const banner = await axios.get('http://localhost:8000/api/banner');
-      const contactEnquiryRes = await axios.get('http://localhost:8000/api/contact');
-      const newlanchdata = await axios.get('http://localhost:8000/api/new-lanch');
+      const categoryRes = await axios.get('http://localhost:8001/api/category');
+      const subcategoryRes = await axios.get('http://localhost:8001/api/subcategory');
+      const productRes = await axios.get('http://localhost:8001/api/product');
+      const banner = await axios.get('http://localhost:8001/api/banner');
+      const contactEnquiryRes = await axios.get('http://localhost:8001/api/contact');
+      const newlanchdata = await axios.get('http://localhost:8001/api/new-lanch');
 
       setCategories(categoryRes.data.data.length);
       setSubcategories(subcategoryRes.data.data.length);
